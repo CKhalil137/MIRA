@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../KSE.LIB/WPF/WPF.csproj" />
+  <Project Path="Taskbar/Taskbar.csproj" />
+</Solution>

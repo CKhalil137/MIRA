@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\KSE\\Dev\\MIRA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\menus\\miramenupopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\menus\\miramenupopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{608A049A-E75B-EC20-BEFE-838391CD3DF9}|..\\KSE.LIB\\WPF\\WPF.csproj|c:\\kse\\dev\\kse.lib\\wpf\\layout\\canvaslayoutmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\theme\\mirapalette.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\theme\\mirapalette.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CanvasLayoutManager.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "RelativeDocumentMoniker": "..\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "ToolTip": "C:\\KSE\\Dev\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "RelativeToolTip": "..\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "ViewState": "AgIAAF0BAAAAAAAAAAAAAF0BAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-25T04:54:54.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "Taskbar\\AssemblyInfo.cs",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\AssemblyInfo.cs",
+              "RelativeToolTip": "Taskbar\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAcAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-25T04:54:52.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\App.xaml",
+              "RelativeDocumentMoniker": "Taskbar\\App.xaml",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\App.xaml",
+              "RelativeToolTip": "Taskbar\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-25T03:45:30.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MiraMenuPopup.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MENUS\\MiraMenuPopup.cs",
+              "RelativeDocumentMoniker": "Taskbar\\MENUS\\MiraMenuPopup.cs",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MENUS\\MiraMenuPopup.cs",
+              "RelativeToolTip": "Taskbar\\MENUS\\MiraMenuPopup.cs",
+              "ViewState": "AgIAAJIAAAAAAAAAAAASwK8AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-18T00:42:16.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MiraPalette.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\THEME\\MiraPalette.cs",
+              "RelativeDocumentMoniker": "Taskbar\\THEME\\MiraPalette.cs",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\THEME\\MiraPalette.cs",
+              "RelativeToolTip": "Taskbar\\THEME\\MiraPalette.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-17T23:35:57.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Taskbar\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Taskbar\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAASwI0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-16T03:07:51.607Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
