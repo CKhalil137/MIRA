@@ -43,6 +43,22 @@ public partial class MainWindow : Window
     private readonly IReadOnlyList<EmailAccount> _emailAccounts;
     private readonly MiraEmailManager _emailManager;
     private readonly Dictionary<string, EmailUnreadIndicator> _emailIndicators = [];
+    private readonly Dictionary<string, int> _lastUnreadCounts = [];
+
+    private const double MainBarHeight = 64;
+    private const double ContextBarHeight = 34;
+
+    // Colours are shared by the compact indicators and the expanded account menu.
+    private static readonly Color[] AccountColors =
+    [
+        Colors.Coral,
+        Colors.Gold,
+        Colors.DeepSkyBlue,
+        Colors.MediumOrchid
+    ];
+
+    private MiraContextBar _contextBar = null!;
+    private Button? _emailButton;
 
     private bool _emailShutdownStarted;
     private bool _emailShutdownFinished;
@@ -117,7 +133,9 @@ public partial class MainWindow : Window
 
         WindowStartupLocation = WindowStartupLocation.Manual;
 
-        Height = 64;
+        // Reserve a fixed-height upper context area. The lower MIRA bar remains
+        // anchored to the Windows taskbar while the view above it changes.
+        Height = MainBarHeight + ContextBarHeight;
     }
 
     /// <summary>
@@ -166,8 +184,21 @@ public partial class MainWindow : Window
             }
         };
 
-        // Establish the window's root content.
-        Content = frame;
+        // The context bar is shared by all four navigation modules. It shows
+        // either an unobtrusive ticker or the currently selected module menu.
+        var root = new Grid { Background = Brushes.Transparent };
+        root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(ContextBarHeight) });
+        root.RowDefinitions.Add(new RowDefinition { Height = new GridLength(MainBarHeight) });
+
+        _contextBar = new MiraContextBar(_emailAccounts, AccountColors);
+        _contextBar.MenuActionRequested += action => ShowPlaceholder(action);
+        _contextBar.EmailAccountSelected += account => ShowPlaceholder($"{account.DisplayName} inbox");
+
+        Grid.SetRow(_contextBar, 0);
+        Grid.SetRow(frame, 1);
+        root.Children.Add(_contextBar);
+        root.Children.Add(frame);
+        Content = root;
 
         #endregion
 
@@ -226,6 +257,8 @@ public partial class MainWindow : Window
                 "\uE787", "", "Open Calendar"),
             0, 8);
 
+        _emailButton = emailButton;
+
         #endregion
 
         #region Email Notification Indicators
@@ -250,12 +283,10 @@ public partial class MainWindow : Window
         for (int i = 0; i < MaxEmailAccounts; i++)
             indicatorRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
-        // Temporary account colours until Settings is implemented.
-        Color[] accountColors = [Colors.Coral, Colors.Gold, Colors.DeepSkyBlue];
-
+        // Account colours are shared with the expandable Email context menu.
         for (int i = 0; i < _emailAccounts.Count; i++)
         {
-            var indicator = new EmailUnreadIndicator(accountColors[i % accountColors.Length]);
+            var indicator = new EmailUnreadIndicator(AccountColors[i % AccountColors.Length]);
 
             Grid.SetColumn(indicator, i);
 
@@ -323,10 +354,10 @@ public partial class MainWindow : Window
 
         // Toggle the MIRA popup when the logo is clicked.
         miraLogo.MouseLeftButtonUp += (_, _) => menuPopup.Toggle();
-        tasksButton.Click += (_, _) => ShowPlaceholder("Tasks");
-        emailButton.Click += (_, _) => ShowPlaceholder("Email");
-        calendarButton.Click += (_, _) => ShowPlaceholder("Calendar");
-        chatButton.Click += (_, _) => ShowPlaceholder("Chat");
+        tasksButton.Click += (_, _) => _contextBar.Toggle(MiraContextMode.Tasks);
+        emailButton.Click += (_, _) => _contextBar.Toggle(MiraContextMode.Email);
+        calendarButton.Click += (_, _) => _contextBar.Toggle(MiraContextMode.Calendar);
+        chatButton.Click += (_, _) => _contextBar.Toggle(MiraContextMode.Chat);
 
         // Retrieve the first live email count when MIRA loads.
         Loaded += async (_, _) =>
@@ -371,6 +402,10 @@ public partial class MainWindow : Window
                 System.Diagnostics.Debug.WriteLine($"Microsoft notification startup failed: {ex}");
             }
 
+            // A truthful startup message; sender/subject previews need a
+            // separate metadata-fetching feature before they can be shown.
+            _contextBar.EnqueueNotification(
+                "MIRA is ready · select Chat, Tasks, Email or Calendar for quick options", "\uE8F2");
         };
 
         #endregion
@@ -507,15 +542,39 @@ public partial class MainWindow : Window
     /// </param>
     private void OnUnreadCountChanged(EmailAccountSummary summary)
     {
-        System.Diagnostics.Debug.WriteLine($"UI EVENT: {summary.AccountId} = {summary.UnreadCount}");
         if (!Dispatcher.CheckAccess())
         {
             Dispatcher.BeginInvoke(new Action(() => OnUnreadCountChanged(summary)));
             return;
         }
 
+        bool hadPreviousCount = _lastUnreadCounts.TryGetValue(summary.AccountId, out int previousCount);
+        _lastUnreadCounts[summary.AccountId] = summary.UnreadCount;
+
         if (_emailIndicators.TryGetValue(summary.AccountId, out EmailUnreadIndicator? indicator))
             indicator.SetUnreadCount(summary.UnreadCount);
+
+        // The account menu stays current even when another module is selected.
+        _contextBar.SetUnreadCount(summary.AccountId, summary.UnreadCount);
+
+        // The initial refresh establishes a baseline and isn't an incoming email.
+        // Subsequent changes can safely be described as unread-count activity.
+        if (hadPreviousCount && previousCount != summary.UnreadCount)
+        {
+            string direction = summary.UnreadCount > previousCount ? "increased" : "decreased";
+            _contextBar.EnqueueNotification(
+                $"{summary.DisplayName}: unread count {direction} to {summary.UnreadCount}");
+        }
+
+        if (_emailButton is not null)
+        {
+            _emailButton.ToolTip = string.Join(Environment.NewLine, _emailAccounts.Select(account =>
+                _lastUnreadCounts.TryGetValue(account.Id, out int count)
+                    ? $"{account.DisplayName}: {count} unread"
+                    : $"{account.DisplayName}: checking..."));
+        }
+
+        System.Diagnostics.Debug.WriteLine($"UI EVENT: {summary.AccountId} = {summary.UnreadCount}");
     }
 
     #endregion
