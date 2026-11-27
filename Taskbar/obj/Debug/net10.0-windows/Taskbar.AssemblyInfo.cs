@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Taskbar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b46bac2f8fb395b4e03c498b5bc42a02105c48f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Taskbar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Taskbar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

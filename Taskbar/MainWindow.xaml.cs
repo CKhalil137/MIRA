@@ -1,5 +1,9 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,8 +12,16 @@ using System.Windows.Media.Effects;
 
 using KSE.LIB.WPF.CONTROLS;
 using KSE.LIB.WPF.LAYOUT;
+
+using KSE.LIB.EMAIL.Models;
+using KSE.LIB.EMAIL.Providers;
+using KSE.LIB.EMAIL.Security;
+using KSE.LIB.EMAIL.Services;
+
 using Taskbar.THEME;
 using Taskbar.MENUS;
+using Taskbar.SERVICES;
+using Taskbar.CONTROLS;
 
 namespace Taskbar;
 
@@ -19,6 +31,24 @@ namespace Taskbar;
 /// </summary>
 public partial class MainWindow : Window
 {
+    #region Fields
+
+    private const string EmailAddress1 = "c.khalil137@gmail.com";
+    private const string EmailAddress2 = "christopher.khalil137@gmail.com";
+    private const string EmailAddress3 = "chris@khalilsystems.co.uk";
+    private const string MicrosoftClientId = "e64a2575-759e-4695-8496-e481385944ce";
+    private const string MicrosoftTenantId = "133fe072-5988-4e9b-82f4-fe55790acffd";
+
+    private readonly Microsoft365Provider _microsoftProvider;
+    private readonly IReadOnlyList<EmailAccount> _emailAccounts;
+    private readonly MiraEmailManager _emailManager;
+    private readonly Dictionary<string, EmailUnreadIndicator> _emailIndicators = [];
+
+    private bool _emailShutdownStarted;
+    private bool _emailShutdownFinished;
+
+    #endregion
+
     #region Window Initialisation
 
     /// <summary>
@@ -28,8 +58,46 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
+        _emailAccounts =
+        [
+            new EmailAccount("personal", EmailAddress1, "Email 1", EmailProviderType.Gmail),
+            new EmailAccount("backup", EmailAddress2, "Email 2", EmailProviderType.Gmail),
+            new EmailAccount("email-3", EmailAddress3, "Email 3", EmailProviderType.Microsoft365)
+        ];
+
+        _microsoftProvider = new Microsoft365Provider(MicrosoftClientId, MicrosoftTenantId);
+        _emailManager = new MiraEmailManager(_emailAccounts, [_microsoftProvider]);
+        _emailManager.UnreadCountChanged += OnUnreadCountChanged;
+
         ConfigureWindow();
         CreateControls();
+
+        Closing += async (_, e) =>
+        {
+            if (_emailShutdownFinished)
+                return;
+
+            e.Cancel = true;
+
+            if (_emailShutdownStarted)
+                return;
+
+            _emailShutdownStarted = true;
+
+            try
+            {
+                await Task.WhenAll(_emailManager.StopGmailNotificationsAsync(), _emailManager.StopMicrosoftNotificationsAsync());
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Email shutdown failed: {ex}");
+            }
+            finally
+            {
+                _emailShutdownFinished = true;
+                Close();
+            }
+        };
 
         Loaded += (_, _) => PositionWindow();
     }
@@ -118,15 +186,11 @@ public partial class MainWindow : Window
         GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
         GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
         GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
-        GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
-        GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
 
         GridLayoutManager.AddColumn(
             layout,
             new GridLength(1, GridUnitType.Star));
 
-        GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
-        GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
         GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
         GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
         GridLayoutManager.AddColumn(layout, new GridLength(1, GridUnitType.Star));
@@ -142,25 +206,76 @@ public partial class MainWindow : Window
             layout,
             CreateNavigationButton(
                 "\uE8F2", "", "Open MIRA Chat"),
-            0, 6);
+            0, 4);
 
         var tasksButton = GridLayoutManager.Place(
             layout,
             CreateNavigationButton(
                 "\uE73E", "", "Open Tasks"),
-            0, 7);
+            0, 5);
 
         var emailButton = GridLayoutManager.Place(
             layout,
             CreateNavigationButton(
                 "\uE715", "", "Open Emails"),
-            0, 9);
+            0, 7);
 
         var calendarButton = GridLayoutManager.Place(
             layout,
             CreateNavigationButton(
                 "\uE787", "", "Open Calendar"),
-            0, 10);
+            0, 8);
+
+        #endregion
+
+        #region Email Notification Indicators
+
+        // Preserve the existing Email icon.
+        var emailIcon = (FrameworkElement)emailButton.Content;
+        emailButton.Content = null;
+        emailIcon.HorizontalAlignment = HorizontalAlignment.Center;
+
+        // Create the horizontal row of account indicators.
+        const int MaxEmailAccounts = 4;
+
+        if (_emailAccounts.Count > MaxEmailAccounts)
+            throw new InvalidOperationException("MIRA supports a maximum of four email accounts.");
+
+        var indicatorRow = new Grid
+        {
+            Width = 50,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
+
+        for (int i = 0; i < MaxEmailAccounts; i++)
+            indicatorRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+        // Temporary account colours until Settings is implemented.
+        Color[] accountColors = [Colors.Coral, Colors.Gold, Colors.DeepSkyBlue];
+
+        for (int i = 0; i < _emailAccounts.Count; i++)
+        {
+            var indicator = new EmailUnreadIndicator(accountColors[i % accountColors.Length]);
+
+            Grid.SetColumn(indicator, i);
+
+            _emailIndicators.Add(_emailAccounts[i].Id, indicator);
+            indicatorRow.Children.Add(indicator);
+        }
+
+        // Stack the indicators above the existing Email icon.
+        var emailContent = new StackPanel
+        {
+            Orientation = Orientation.Vertical,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center
+        };
+
+        emailContent.Children.Add(indicatorRow);
+        emailContent.Children.Add(emailIcon);
+
+        emailButton.Content = emailContent;
+        emailButton.Padding = new Thickness(12, 2, 12, 2);
 
         #endregion
 
@@ -191,7 +306,7 @@ public partial class MainWindow : Window
                     Opacity = 0.9
                 }
             },
-            0, 8);
+            0, 6);
 
         #endregion
 
@@ -213,21 +328,53 @@ public partial class MainWindow : Window
         calendarButton.Click += (_, _) => ShowPlaceholder("Calendar");
         chatButton.Click += (_, _) => ShowPlaceholder("Chat");
 
+        // Retrieve the first live email count when MIRA loads.
+        Loaded += async (_, _) =>
+        {
+            try
+            {
+                string cacheDirectory = Path.Combine(
+                    Environment.GetFolderPath(
+                        Environment.SpecialFolder.LocalApplicationData),
+                    "KSE",
+                    "MIRA",
+                    "MicrosoftTokens");
+
+                await _microsoftProvider.ConfigureTokenCacheAsync(
+                    cacheDirectory);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    $"Microsoft token cache initialisation failed: {ex}");
+            }
+
+            await UpdateEmailTooltipAsync(emailButton);
+
+            try
+            {
+                await _emailManager.StartGmailNotificationsAsync();
+                System.Diagnostics.Debug.WriteLine("MIRA Gmail notifications started.");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Gmail notification startup failed: {ex}");
+            }
+
+            try
+            {
+                _emailManager.StartMicrosoftNotifications(_microsoftProvider);
+                System.Diagnostics.Debug.WriteLine("MIRA Microsoft 365 notifications started.");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Microsoft notification startup failed: {ex}");
+            }
+
+        };
+
         #endregion
     }
-
-    /// <summary>
-    /// Creates a standard navigation button using the MIRA colour palette.
-    /// </summary>
-    /// <param name="caption">The symbol displayed on the button.</param>
-    /// <param name="tooltip">The text displayed when hovering over the button.</param>
-    /// <returns>The configured navigation button.</returns>
-    /// <example>
-    /// Create a button for a Tasks module:
-    /// <code>
-    /// var button = CreateNavigationButton("✓", "Tasks");
-    /// </code>
-    /// </example>
 
     /// <summary>
     /// Creates a MIRA navigation button with independently coloured
@@ -260,7 +407,7 @@ public partial class MainWindow : Window
         {
             Text = glyph,
             FontFamily = new FontFamily("Segoe MDL2 Assets"),
-            FontSize = 20,
+            FontSize = 32,
             Foreground = new SolidColorBrush(glyphColor ?? MiraPalette.Accent),
         });
 
@@ -269,10 +416,10 @@ public partial class MainWindow : Window
             content.Children.Add(new TextBlock
             {
                 Text = text,
-                FontSize = 18,
+                FontSize = 20,
                 Foreground = new SolidColorBrush(
                     textColor ?? MiraPalette.TextPrimary),
-                 Margin = new Thickness(10, 0, 0, 0)
+                Margin = new Thickness(10, 0, 0, 0)
             });
         }
 
@@ -303,4 +450,76 @@ public partial class MainWindow : Window
     }
 
     #endregion
+
+    #region Email Integration
+
+    /// <summary>
+    /// Retrieves the latest unread email count through
+    /// MiraEmailManager and updates the Email button tooltip.
+    /// </summary>
+    /// <param name="emailButton">
+    /// The navigation button to update.
+    /// </param>
+    private async Task UpdateEmailTooltipAsync(Button emailButton)
+    {
+        emailButton.ToolTip = "Checking emails...";
+
+        try
+        {
+            string[] accountStatuses = await Task.WhenAll(
+                _emailAccounts.Select(async account =>
+                {
+                    try
+                    {
+                        EmailAccountSummary summary = await _emailManager.GetUnreadSummaryAsync(account.Id);
+
+                        return $"{summary.DisplayName}: {summary.UnreadCount} unread";
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Email account '{account.Id}' failed: {ex}");
+
+                        _emailIndicators[account.Id].SetUnreadCount(0);
+
+                        return $"{account.DisplayName}: unavailable";
+                    }
+                }));
+
+            emailButton.ToolTip = string.Join(
+                Environment.NewLine,
+                accountStatuses);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine(
+                $"Email refresh failed: {ex}");
+
+            emailButton.ToolTip = "Email unavailable";
+        }
+    }
+
+    /// <summary>
+    /// Updates the appropriate email indicator when its
+    /// unread count changes.
+    /// </summary>
+    /// <param name="summary">
+    /// The updated unread summary for the account.
+    /// </param>
+    private void OnUnreadCountChanged(EmailAccountSummary summary)
+    {
+        System.Diagnostics.Debug.WriteLine($"UI EVENT: {summary.AccountId} = {summary.UnreadCount}");
+        if (!Dispatcher.CheckAccess())
+        {
+            Dispatcher.BeginInvoke(new Action(() => OnUnreadCountChanged(summary)));
+            return;
+        }
+
+        if (_emailIndicators.TryGetValue(summary.AccountId, out EmailUnreadIndicator? indicator))
+            indicator.SetUnreadCount(summary.UnreadCount);
+    }
+
+    #endregion
+
 }
+
+

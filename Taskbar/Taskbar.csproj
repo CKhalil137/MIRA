@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\KSE.LIB\EMAIL\EMAIL.csproj" />
     <ProjectReference Include="..\..\KSE.LIB\WPF\WPF.csproj" />
   </ItemGroup>
 

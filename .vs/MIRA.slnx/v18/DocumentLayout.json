@@ -3,20 +3,33 @@
   "WorkspaceRootPath": "C:\\KSE\\Dev\\MIRA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{575D5017-D969-0CF6-4D36-D79BEDEDEF7F}|..\\KSE.LIB\\EMAIL\\EMAIL.csproj|c:\\kse\\dev\\kse.lib\\email\\notifications\\microsoftimaplistener.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\services\\miraemailmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\services\\miraemailmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{575D5017-D969-0CF6-4D36-D79BEDEDEF7F}|..\\KSE.LIB\\EMAIL\\EMAIL.csproj|c:\\kse\\dev\\kse.lib\\email\\providers\\microsoft365provider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{575D5017-D969-0CF6-4D36-D79BEDEDEF7F}|..\\KSE.LIB\\EMAIL\\EMAIL.csproj|c:\\kse\\dev\\kse.lib\\email\\services\\emailmonitor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\controls\\emailunreadindicator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\controls\\emailunreadindicator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\menus\\miramenupopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\menus\\miramenupopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|c:\\kse\\dev\\mira\\taskbar\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9C257E17-D98F-50C6-5A26-6733946178C9}|Taskbar\\Taskbar.csproj|solutionrelative:taskbar\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{608A049A-E75B-EC20-BEFE-838391CD3DF9}|..\\KSE.LIB\\WPF\\WPF.csproj|c:\\kse\\dev\\kse.lib\\wpf\\layout\\canvaslayoutmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -33,62 +46,109 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CanvasLayoutManager.cs",
-              "DocumentMoniker": "C:\\KSE\\Dev\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
-              "RelativeDocumentMoniker": "..\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
-              "ToolTip": "C:\\KSE\\Dev\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
-              "RelativeToolTip": "..\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
-              "ViewState": "AgIAAF0BAAAAAAAAAAAAAF0BAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T04:54:54.089Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "Taskbar\\AssemblyInfo.cs",
-              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\AssemblyInfo.cs",
-              "RelativeToolTip": "Taskbar\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAcAAAA7AAAAAAAAAA==",
+              "Title": "Microsoft365Provider.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\KSE.LIB\\EMAIL\\Providers\\Microsoft365Provider.cs",
+              "RelativeDocumentMoniker": "..\\KSE.LIB\\EMAIL\\Providers\\Microsoft365Provider.cs",
+              "ToolTip": "C:\\KSE\\Dev\\KSE.LIB\\EMAIL\\Providers\\Microsoft365Provider.cs",
+              "RelativeToolTip": "..\\KSE.LIB\\EMAIL\\Providers\\Microsoft365Provider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-25T04:54:52.813Z",
+              "WhenOpened": "2026-11-27T03:29:18.398Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "MicrosoftImapListener.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\KSE.LIB\\EMAIL\\Notifications\\MicrosoftImapListener.cs",
+              "RelativeDocumentMoniker": "..\\KSE.LIB\\EMAIL\\Notifications\\MicrosoftImapListener.cs",
+              "ToolTip": "C:\\KSE\\Dev\\KSE.LIB\\EMAIL\\Notifications\\MicrosoftImapListener.cs",
+              "RelativeToolTip": "..\\KSE.LIB\\EMAIL\\Notifications\\MicrosoftImapListener.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-27T03:28:07.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmailMonitor.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\KSE.LIB\\EMAIL\\Services\\EmailMonitor.cs",
+              "RelativeDocumentMoniker": "..\\KSE.LIB\\EMAIL\\Services\\EmailMonitor.cs",
+              "ToolTip": "C:\\KSE\\Dev\\KSE.LIB\\EMAIL\\Services\\EmailMonitor.cs",
+              "RelativeToolTip": "..\\KSE.LIB\\EMAIL\\Services\\EmailMonitor.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAwwDUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-26T23:12:06.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EmailUnreadIndicator.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\CONTROLS\\EmailUnreadIndicator.cs",
+              "RelativeDocumentMoniker": "Taskbar\\CONTROLS\\EmailUnreadIndicator.cs",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\CONTROLS\\EmailUnreadIndicator.cs",
+              "RelativeToolTip": "Taskbar\\CONTROLS\\EmailUnreadIndicator.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-26T21:24:02.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MiraEmailManager.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\SERVICES\\MiraEmailManager.cs",
+              "RelativeDocumentMoniker": "Taskbar\\SERVICES\\MiraEmailManager.cs",
+              "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\SERVICES\\MiraEmailManager.cs",
+              "RelativeToolTip": "Taskbar\\SERVICES\\MiraEmailManager.cs",
+              "ViewState": "AgIAANIBAAAAAAAAAAAcwPABAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-26T17:27:57.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\App.xaml",
               "RelativeDocumentMoniker": "Taskbar\\App.xaml",
               "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\App.xaml",
               "RelativeToolTip": "Taskbar\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-11-25T03:45:30.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-25T03:45:30.272Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "MiraMenuPopup.cs",
               "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MENUS\\MiraMenuPopup.cs",
               "RelativeDocumentMoniker": "Taskbar\\MENUS\\MiraMenuPopup.cs",
               "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MENUS\\MiraMenuPopup.cs",
               "RelativeToolTip": "Taskbar\\MENUS\\MiraMenuPopup.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAiwL4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAgwL4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-18T00:42:16.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-18T00:42:16.132Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
+              "Title": "CanvasLayoutManager.cs",
+              "DocumentMoniker": "C:\\KSE\\Dev\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "RelativeDocumentMoniker": "..\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "ToolTip": "C:\\KSE\\Dev\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "RelativeToolTip": "..\\KSE.LIB\\WPF\\LAYOUT\\CanvasLayoutManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-25T04:54:54.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "MiraPalette.cs",
               "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\THEME\\MiraPalette.cs",
               "RelativeDocumentMoniker": "Taskbar\\THEME\\MiraPalette.cs",
@@ -96,18 +156,17 @@
               "RelativeToolTip": "Taskbar\\THEME\\MiraPalette.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-17T23:35:57.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-17T23:35:57.481Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Taskbar\\MainWindow.xaml.cs",
               "ToolTip": "C:\\KSE\\Dev\\MIRA\\Taskbar\\MainWindow.xaml.cs",
               "RelativeToolTip": "Taskbar\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAOwAAAAAAAAAAAAuwBIBAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-11-16T03:07:51.607Z",
               "EditorCaption": ""

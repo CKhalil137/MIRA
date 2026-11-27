@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="../KSE.LIB/EMAIL/EMAIL.csproj" />
   <Project Path="../KSE.LIB/WPF/WPF.csproj" />
   <Project Path="Taskbar/Taskbar.csproj" />
 </Solution>
